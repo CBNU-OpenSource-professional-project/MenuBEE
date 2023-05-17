@@ -34,6 +34,9 @@
         <activity
             android:name=".Camera_capture"
             android:label="Camera_capture" />
+        <activity
+            android:name=".Cafe"
+            android:label="Cafe" />
         <activity android:name="ViewPager2AutoScrollActivity"
             android:label="ViewPager2AutoScrollActivity"
             />

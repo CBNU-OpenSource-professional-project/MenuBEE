@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ImageSliderAdapter extends RecyclerView.Adapter<ImageSliderAdapter.ImageSliderViewHolder> {
 
     private Context context;
-    private int[] imageResources = {R.drawable.hexabutton_1, R.drawable.hexabutton_2, R.drawable.hexabutton_3, R.drawable.bee, R.drawable.order};
+    private int[] imageResources = { R.drawable.bee, R.drawable.bee2};
 
     public ImageSliderAdapter(Context context) {
         this.context = context;
