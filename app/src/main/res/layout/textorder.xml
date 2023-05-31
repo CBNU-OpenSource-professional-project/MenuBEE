@@ -13,11 +13,17 @@
         android:background="@drawable/ordertext" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:background="@drawable/order"
-        android:layout_marginTop="10dp"
-        android:layout_width="130dp"
+        android:layout_width="wrap_content"
         android:layout_height="120dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/order"
         android:text="\n\n       음성 주문"
-        android:textSize="13sp"
-        />
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
 </LinearLayout>
