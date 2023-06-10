@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.maxkeppeler.sheets.color.ColorSheet;
-
 public class Setting extends AppCompatActivity {
 
     private TextView textSelectVoice;
@@ -23,12 +21,6 @@ public class Setting extends AppCompatActivity {
 
         textSelectVoice = findViewById(R.id.sound_TTS_change);
 
-        findViewById(R.id.colorPicker_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setupColorSheet();
-            }
-        });
     }
 
     public void showPopupMenu(View view) {
@@ -53,30 +45,6 @@ public class Setting extends AppCompatActivity {
                 }
             }
         });
-
-        popupMenu.show();
     }
 
-    private void setupColorSheet() {
-        int[] colors = getResources().getIntArray(R.array.colors);
-
-        ColorSheet.getInstance()
-                .cornerRadius(8)
-                .colorPicker(colors, selectedColor, new ColorSheet.OnColorSelectedListener() {
-                    @Override
-                    public void onColorSelected(int color) {
-                        selectedColor = color;
-                        setColor(selectedColor);
-                    }
-                })
-                .show(getSupportFragmentManager(), "colorPicker");
-    }
-
-    private void setColor(@ColorInt int color) {
-        TextView displayColor = findViewById(R.id.displayColor);
-        Button colorPickerButton = findViewById(R.id.colorPicker_button);
-
-        displayColor.setBackgroundTintList(ColorStateList.valueOf(color));
-        colorPickerButton.setText(ColorSheetUtils.colorToHex(color));
-    }
 }
