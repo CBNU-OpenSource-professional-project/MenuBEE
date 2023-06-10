@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Cafe extends AppCompatActivity {
-    ScrollView menuView;
     LinearLayout menu;
     LinearLayout orderResult;
     AppCompatButton orderbtn, addorderbtn;
@@ -42,10 +41,8 @@ public class Cafe extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe);
-        menuView = (ScrollView) findViewById(R.id.menuView);
         orderbtn = (AppCompatButton) findViewById(R.id.orderbtn);
         addorderbtn = (AppCompatButton) findViewById(R.id.addorderbtn);
-        menuView.setBackgroundColor(Color.parseColor("#000000"));
 
         //result 배열 예시
         String[] result1 = {"에스프레소", "아메리카노", "카페 라떼", "바닐라라떼", "카페 모카", "캐모마일 차", "휘낭시에", "딸기케이크", "쿠키", "스콘", "파운드케이크"};
@@ -148,7 +145,7 @@ public class Cafe extends AppCompatActivity {
                     }
                     Intent intent = new Intent(getApplicationContext(), TextOrder.class);
                     intent.putExtra("order", (CharSequence) ordermsg);
-                    startActivityForResult(intent, 0);
+                    startActivity(intent);
                 }
             }
         });
@@ -179,7 +176,7 @@ public class Cafe extends AppCompatActivity {
                     }
                     Intent intent = new Intent(getApplicationContext(), AdditionalOrder.class);
                     intent.putExtra("order", (CharSequence) ordermsg);
-                    startActivityForResult(intent, 0);
+                    startActivity(intent);
                 }
             }
         });
@@ -230,5 +227,17 @@ public class Cafe extends AppCompatActivity {
         result.selected.addView(result.num, numparams);
         result.selected.addView(result.plus, plusparams);
         result.selected.addView(result.minus, minusparams);
+    }
+
+    public void changeBGColor(int color) {
+        ScrollView menuView = (ScrollView) findViewById(R.id.menuView);
+        menuView.setBackgroundColor(color);
+    }
+
+    public void changeTextColor(int color) {
+        TextView menuHead = (TextView) findViewById(R.id.menuHead);
+        View menuLine = (View) findViewById(R.id.menuLine);
+        menuHead.setTextColor(color);
+        menuLine.setBackgroundColor(color);
     }
 }
