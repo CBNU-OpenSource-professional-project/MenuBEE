@@ -41,13 +41,13 @@ public class PayOrder extends AppCompatActivity {
         }
 
         for(int i = 0; i < 8; i++) {
-            final int index;
-            index = i;
-            btnlist[index].setOnClickListener(new View.OnClickListener() {
+            final int index1;
+            index1 = i;
+            btnlist[index1].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String text = reqText.getText().toString();
-                    String btnText = btnlist[index].getText().toString();
+                    String btnText = btnlist[index1].getText().toString();
                     reqText.setText(text + " " + btnText);
                 }
             });

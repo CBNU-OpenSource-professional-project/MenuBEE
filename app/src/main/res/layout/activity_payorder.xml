@@ -129,7 +129,7 @@
             tools:ignore="SpeakableTextPresentCheck"/>
 
         <ImageView
-            android:id="@+id/pol5"
+            android:id="@+id/pol10"
             android:layout_width="140dp"
             android:layout_height="140dp"
             app:layout_constraintHorizontal_bias="1.000"
