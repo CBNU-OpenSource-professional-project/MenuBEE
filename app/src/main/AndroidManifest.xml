@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Menubee">
         <activity
+            android:name=".popupcolor"
+            android:exported="false" />
+        <activity
             android:name=".Setting"
             android:exported="false" />
         <activity
@@ -40,9 +43,9 @@
         <activity
             android:name=".AdditionalOrder"
             android:label="AdditionalOrder" />
-        <activity android:name="ViewPager2AutoScrollActivity"
-            android:label="ViewPager2AutoScrollActivity"
-            />
+        <activity
+            android:name=".ViewPager2AutoScrollActivity"
+            android:label="ViewPager2AutoScrollActivity" />
     </application>
 
 </manifest>

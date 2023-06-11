@@ -26,7 +26,7 @@ import java.util.Iterator;
 public class Cafe extends AppCompatActivity {
     LinearLayout menu;
     LinearLayout orderResult;
-    AppCompatButton orderbtn, addorderbtn;
+    AppCompatButton orderbtn;
     class Result {
         LinearLayout selected = new LinearLayout(getApplicationContext());
         TextView menu = new TextView(getApplicationContext());
@@ -42,7 +42,6 @@ public class Cafe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe);
         orderbtn = (AppCompatButton) findViewById(R.id.orderbtn);
-        addorderbtn = (AppCompatButton) findViewById(R.id.addorderbtn);
 
         //result 배열 예시
         String[] result1 = {"에스프레소", "아메리카노", "카페 라떼", "바닐라라떼", "카페 모카", "캐모마일 차", "휘낭시에", "딸기케이크", "쿠키", "스콘", "파운드케이크"};
@@ -54,7 +53,7 @@ public class Cafe extends AppCompatActivity {
 
         orderResult = (LinearLayout) findViewById(R.id.orderResult);
 
-        for(String next : result1) {
+        for (String next : result1) {
             TextView tv = new TextView(getApplicationContext());
             tv.setText(next);
             menuStyle(tv);
@@ -64,7 +63,7 @@ public class Cafe extends AppCompatActivity {
 
 
         Iterator<TextView> menulistIterator = menuLists.iterator();
-        while(menulistIterator.hasNext()) {
+        while (menulistIterator.hasNext()) {
             TextView tnext = menulistIterator.next();
             tnext.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,11 +85,11 @@ public class Cafe extends AppCompatActivity {
                     selectedLayout(result);
                     resultList.add(result);
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParams.setMargins(0,5,0,0);
+                    layoutParams.setMargins(0, 5, 0, 0);
                     result.selected.setLayoutParams(layoutParams);
                     orderResult.addView(result.selected);
 
-                    for(Result pmresult : resultList) {
+                    for (Result pmresult : resultList) {
                         pmresult.plus.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -103,11 +102,10 @@ public class Cafe extends AppCompatActivity {
                         pmresult.minus.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                if(pmresult.number == 1) {
+                                if (pmresult.number == 1) {
                                     orderResult.removeView(pmresult.selected);
                                     resultList.remove(pmresult);
-                                }
-                                else {
+                                } else {
                                     pmresult.number -= 1;
                                     String curNum = Integer.toString(pmresult.number);
                                     pmresult.num.setText(curNum);
@@ -124,10 +122,9 @@ public class Cafe extends AppCompatActivity {
             public void onClick(View v) {
                 Iterator<Result> iterator = resultList.iterator();
                 StringBuilder ordermsg = new StringBuilder("");
-                if(resultList.isEmpty()) {
+                if (resultList.isEmpty()) {
                     Toast.makeText(Cafe.this, "주문할 메뉴를 선택하세요", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     while (iterator.hasNext()) {
                         Result next = iterator.next();
                         if (!iterator.hasNext()) {
@@ -135,51 +132,20 @@ public class Cafe extends AppCompatActivity {
                             ordermsg.append(" ");
                             ordermsg.append(next.num.getText().toString());
                             ordermsg.append("개 주세요");
-                        }
-                        else {
+                        } else {
                             ordermsg.append(next.menu.getText().toString());
                             ordermsg.append(" ");
                             ordermsg.append(next.num.getText().toString());
                             ordermsg.append("개, ");
                         }
                     }
-                    Intent intent = new Intent(getApplicationContext(), TextOrder.class);
+                    Intent intent = new Intent(getApplicationContext(), Choice_mode.class);
                     intent.putExtra("order", (CharSequence) ordermsg);
                     startActivity(intent);
                 }
             }
         });
 
-        addorderbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Iterator<Result> iterator = resultList.iterator();
-                StringBuilder ordermsg = new StringBuilder("");
-                if(resultList.isEmpty()) {
-                    Toast.makeText(Cafe.this, "주문할 메뉴를 선택하세요", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    while (iterator.hasNext()) {
-                        Result next = iterator.next();
-                        if (!iterator.hasNext()) {
-                            ordermsg.append(next.menu.getText().toString());
-                            ordermsg.append(" ");
-                            ordermsg.append(next.num.getText().toString());
-                            ordermsg.append("개 주세요");
-                        }
-                        else {
-                            ordermsg.append(next.menu.getText().toString());
-                            ordermsg.append(" ");
-                            ordermsg.append(next.num.getText().toString());
-                            ordermsg.append("개, ");
-                        }
-                    }
-                    Intent intent = new Intent(getApplicationContext(), AdditionalOrder.class);
-                    intent.putExtra("order", (CharSequence) ordermsg);
-                    startActivity(intent);
-                }
-            }
-        });
     }
 
     @Override
