@@ -43,11 +43,11 @@ public class Tip extends AppCompatActivity {
 
                 if(neverview.isChecked())
                 {
-                    database.storeBoolean("viewtip", true);
+                    database.storeBoolean("viewtip", false);
                 }
                 else
                 {
-                    database.storeBoolean("viewtip", false);
+                    database.storeBoolean("viewtip", true);
                 }
 
                 finish();

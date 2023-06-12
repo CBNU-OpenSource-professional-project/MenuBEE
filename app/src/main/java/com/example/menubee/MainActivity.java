@@ -12,7 +12,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean tip_value;
+    boolean viewtip;
     AppCompatButton start_btn;
     AppCompatButton setting_btn;
 
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         database = new Database(this);
-        tip_value = database.getBoolean("viewtip", false);
+        viewtip = database.getBoolean("viewtip", true);
 
         start_btn = findViewById(R.id.start_btn);
         start_btn.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnstartclicked(View v) {
-        if (!tip_value) {
+        if (viewtip) {
             Intent intent = new Intent(getApplicationContext(),Tip.class);
             startActivity(intent);
         } else {

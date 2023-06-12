@@ -35,6 +35,34 @@ public class Setting extends AppCompatActivity {
 
         database = new Database(this);
 
+        boolean BGtoken = database.getBoolean("BGtoken",false);
+        boolean Texttoken = database.getBoolean("Texttoken",false);
+
+        if (BGtoken && !Texttoken)
+        {
+            String temp = database.getString("colorval","");
+
+            database.storeString("BGcolor",temp);
+
+            changeBGColor = findViewById(R.id.displayColor);
+
+            int TextcolorInt = Color.parseColor(temp);
+
+            changeBGColor.setBackgroundColor(TextcolorInt);
+        }
+        else if(!BGtoken && Texttoken)
+        {
+            String temp = database.getString("colorval","");
+
+            database.storeString("Textcolor",temp);
+
+            changeTextColor = findViewById(R.id.Menu_Text_Color);
+
+            int TextcolorInt = Color.parseColor(temp);
+
+            changeTextColor.setBackgroundColor(TextcolorInt);
+        }
+
         textSelectVoice = findViewById(R.id.sound_TTS_change);
 
 
@@ -42,18 +70,10 @@ public class Setting extends AppCompatActivity {
         setBGcolor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                database.storeBoolean("BGorText",true);
                 Intent intent = new Intent(getApplicationContext(),selectcolor.class);
                 startActivity(intent);
-
-                database.storeString("BGcolor",database.getString("selectcolor",""));
-
-                changeBGColor = findViewById(R.id.displayColor);
-
-                BGcolor = database.getString("BGcolor","");
-
-                int BGcolorInt = Color.parseColor(BGcolor);
-
-                changeBGColor.setBackgroundColor(BGcolorInt);
+                finish();
             }
         });
 
@@ -61,24 +81,15 @@ public class Setting extends AppCompatActivity {
         setTextcolor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                database.storeBoolean("BGorText",false);
                 Intent intent = new Intent(getApplicationContext(),selectcolor.class);
                 startActivity(intent);
-
-                database.storeString("Textcolor",database.getString("selectcolor",""));
-
-                changeTextColor = findViewById(R.id.Menu_Text_Color);
-
-                Textcolor = database.getString("Textcolor","");
-
-                int TextcolorInt = Color.parseColor(Textcolor);
-
-                changeTextColor.setBackgroundColor(TextcolorInt);
+                finish();
             }
         });
 
 
     }
-
 
 }
 

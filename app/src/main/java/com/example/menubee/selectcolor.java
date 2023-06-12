@@ -23,7 +23,7 @@ public class selectcolor extends AppCompatActivity {
     Database database;
     String selectcolorval;
 
-
+    boolean BGorText = false;
 
     AppCompatButton selectbtn;
     @Override
@@ -32,6 +32,8 @@ public class selectcolor extends AppCompatActivity {
         setContentView(R.layout.activity_selectcolor);
 
         database = new Database(this);
+
+        BGorText = database.getBoolean("BGorText",false);
 
         colorTextView = findViewById(R.id.color_text_view);
 
@@ -63,9 +65,19 @@ public class selectcolor extends AppCompatActivity {
         selectbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                database.storeString("selectcolor",selectcolorval);
+                if(BGorText){
+                    database.storeBoolean("BGtoken",true);
+                    database.storeBoolean("Texttoken",false);
+                    database.storeString("colorval",selectcolorval);
+                }else{
+                    database.storeBoolean("BGtoken",false);
+                    database.storeBoolean("Texttoken",true);
+                    database.storeString("colorval",selectcolorval);
+                }
                 finish();
+                Intent intent = new Intent(getApplicationContext(),Setting.class);
+                startActivity(intent);
+
             }
         });
     }
