@@ -47,7 +47,7 @@ public class ViewPager2AutoScrollActivity extends AppCompatActivity {
                 // ViewPager2에 현재 페이지를 설정합니다.
                 viewPager2.setCurrentItem(currentPage, true);
             }
-        }, 3000, 3000);
+        }, 700, 700);
 
         new Thread(new Runnable() {
             @Override
@@ -123,7 +123,7 @@ public class ViewPager2AutoScrollActivity extends AppCompatActivity {
                 // 현재 액티비티를 종료합니다.
                 finish();
             }
-        }, 30000);
+        }, 10000);
 
         // 텍스트를 "Loading..."으로 설정합니다.
 

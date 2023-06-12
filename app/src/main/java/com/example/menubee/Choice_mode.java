@@ -4,17 +4,18 @@ package com.example.menubee;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 public class Choice_mode extends AppCompatActivity {
 
-    AppCompatButton gotoorderbtn;
-    AppCompatButton gotoplusrequestbtn;
+    TextView gotoorderbtn;
+    TextView gotoplusrequestbtn;
     AppCompatButton gotomainbtn;
 
-    AppCompatButton gotofastorderbtn;
+    TextView gotofastorderbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class Choice_mode extends AppCompatActivity {
         Intent intent = getIntent();
         CharSequence order = intent.getCharSequenceExtra("order");
 
-        gotoorderbtn = findViewById(R.id.gotoorderbtn);
+        gotoorderbtn = findViewById(R.id.pay_order);
 
         gotoorderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +35,7 @@ public class Choice_mode extends AppCompatActivity {
             }
         });
 
-        gotoplusrequestbtn = findViewById(R.id.gotoplusrequestbtn);
+        gotoplusrequestbtn = findViewById(R.id.plus_order);
 
         gotoplusrequestbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +46,7 @@ public class Choice_mode extends AppCompatActivity {
             }
         });
 
-        gotomainbtn = findViewById(R.id.gomainbtn);
+        gotomainbtn = findViewById(R.id.gotomain);
 
         gotomainbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,10 +54,11 @@ public class Choice_mode extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
-        gotofastorderbtn = findViewById(R.id.gotofastorderbtn);
+        gotofastorderbtn = findViewById(R.id.quick_order);
 
         gotofastorderbtn.setOnClickListener(new View.OnClickListener() {
             @Override

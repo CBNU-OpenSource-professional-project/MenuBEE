@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Menubee">
         <activity
-            android:name=".popupcolor"
+            android:name=".selectcolor"
             android:exported="false" />
         <activity
             android:name=".Setting"

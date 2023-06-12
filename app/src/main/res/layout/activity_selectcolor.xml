@@ -1,14 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
-    android:layout_height="400dp"
-    android:orientation="vertical"
-    android:padding="16dp">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".selectcolor">
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/main_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -21,6 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:gravity="center"
+            android:fontFamily="@font/bitbit"
             android:textSize="20sp" />
 
         <!-- 선택한 색상 -->
@@ -46,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textSize="20sp"
+            android:fontFamily="@font/bitbit"
             android:text="밝기 조절"/>
 
         <!-- 밝기 -->
@@ -63,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:textSize="20sp"
+            android:fontFamily="@font/bitbit"
             android:text="투명도 조절"/>
 
         <!-- 투명도 -->
@@ -72,15 +73,21 @@
             android:layout_height="wrap_content"
             app:borderColor_AlphaSlideBar="@android:color/darker_gray"
             app:borderSize_AlphaSlideBar="5"
-            app:selector_AlphaSlideBar="@drawable/wheel" />
+            app:selector_AlphaSlideBar="@drawable/wheel">
+
+        </com.skydoves.colorpickerview.sliders.AlphaSlideBar>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/selectcolor_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="#00FFFFFF"
+            android:backgroundTintMode="screen"
+            android:fontFamily="@font/bitbit"
+            android:textColor="#676767"
+            android:text="선택 완료" />
 
     </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/close_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="닫기"
-        android:layout_gravity="center_horizontal" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

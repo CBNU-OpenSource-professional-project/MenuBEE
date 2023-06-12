@@ -14,27 +14,41 @@ public class Tip extends AppCompatActivity {
     boolean viewtip;
     AppCompatButton close;
 
+    Database database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip);
         CheckBox neverview = findViewById(R.id.neverview);
 
-        viewtip = ((Global) getApplicationContext()).getTip_value();
+        database = new Database(this);
 
         neverview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewtip = !neverview.isChecked();
+
+
+
             }
         });
 
-        ((Global) getApplicationContext()).setTip_value(viewtip);
 
         close = (AppCompatButton) findViewById(R.id.closetip);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+                if(neverview.isChecked())
+                {
+                    database.storeBoolean("viewtip", true);
+                }
+                else
+                {
+                    database.storeBoolean("viewtip", false);
+                }
 
                 finish();
                 Intent intent1 = new Intent(getApplicationContext(), Camera_capture.class);

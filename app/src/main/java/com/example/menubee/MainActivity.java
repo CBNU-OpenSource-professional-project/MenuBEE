@@ -16,14 +16,15 @@ public class MainActivity extends AppCompatActivity {
     AppCompatButton start_btn;
     AppCompatButton setting_btn;
 
-
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tip_value = ((Global) getApplicationContext()).getTip_value();
+        database = new Database(this);
+        tip_value = database.getBoolean("viewtip", false);
 
         start_btn = findViewById(R.id.start_btn);
         start_btn.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnstartclicked(View v) {
-        if (tip_value) {
+        if (!tip_value) {
             Intent intent = new Intent(getApplicationContext(),Tip.class);
             startActivity(intent);
         } else {

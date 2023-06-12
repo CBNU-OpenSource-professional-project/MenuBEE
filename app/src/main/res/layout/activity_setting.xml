@@ -28,8 +28,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="30dp">
 
             <TextView
                 android:id="@+id/sound"
@@ -92,8 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:background="@drawable/ttlvoicespinner"
-                    />
+                    android:background="@drawable/ttlvoicespinner" />
 
             </LinearLayout>
 
@@ -106,37 +105,37 @@
                     android:id="@+id/sound_TTS_speed"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/bitbit"
                     android:paddingTop="10dp"
-                    android:textSize="20dp"
-                    android:layout_weight="1"
-                    android:text="출력 음성 속도 변경" />
+                    android:text="출력 음성 속도 변경"
+                    android:textSize="20dp" />
 
                 <RadioGroup
                     android:layout_width="230dp"
-                    android:orientation="horizontal"
                     android:layout_height="48dp"
-                    android:layout_weight="1" >
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioButton"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="67dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="0.75x" />
 
                     <RadioButton
                         android:id="@+id/radioButton2"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="67dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="1.0x" />
 
                     <RadioButton
                         android:id="@+id/radioButton3"
-                        android:layout_marginLeft="10dp"
                         android:layout_width="67dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:text="1.25x" />
                 </RadioGroup>
 
@@ -230,7 +229,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="80dp"
+                    android:layout_marginLeft="60dp"
                     android:background="@drawable/home_iconshape"
                     android:backgroundTint="#E1E1E1"
                     android:paddingTop="13dp"
@@ -297,9 +296,18 @@
                     android:id="@+id/Question_CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                     />
+                    android:layout_weight="1" />
             </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:background="#ffffff"
+                android:fontFamily="@font/bitbit"
+                android:text="완료"
+                android:textColor="#676767" />
         </LinearLayout>
 
     </LinearLayout>

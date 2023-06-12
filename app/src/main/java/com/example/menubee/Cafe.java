@@ -27,6 +27,8 @@ public class Cafe extends AppCompatActivity {
     LinearLayout menu;
     LinearLayout orderResult;
     AppCompatButton orderbtn;
+
+    Database database;
     class Result {
         LinearLayout selected = new LinearLayout(getApplicationContext());
         TextView menu = new TextView(getApplicationContext());
@@ -42,6 +44,7 @@ public class Cafe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe);
         orderbtn = (AppCompatButton) findViewById(R.id.orderbtn);
+
 
         //result 배열 예시
         String[] result1 = {"에스프레소", "아메리카노", "카페 라떼", "바닐라라떼", "카페 모카", "캐모마일 차", "휘낭시에", "딸기케이크", "쿠키", "스콘", "파운드케이크"};
@@ -116,6 +119,23 @@ public class Cafe extends AppCompatActivity {
                 }
             });
         }
+
+        database = new Database(this);
+
+        String BGcolor = database.getString("BGcolor","");
+        String Textcolor = database.getString("Textcolor","");
+
+        int BGcolor_int = Color.parseColor(BGcolor);
+        int Textcolor_int = Color.parseColor(Textcolor);
+
+        if(BGcolor.equals("")){
+            BGcolor_int = Color.parseColor("#FFFFFF");
+        }
+        if(Textcolor.equals("")) {
+            Textcolor_int = Color.parseColor("#000000");
+        }
+        changeBGColor(BGcolor_int);
+        changeTextColor(Textcolor_int);
 
         orderbtn.setOnClickListener(new View.OnClickListener() {
             @Override

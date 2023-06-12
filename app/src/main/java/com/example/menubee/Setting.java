@@ -1,6 +1,9 @@
 package com.example.menubee;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,42 +19,65 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 public class Setting extends AppCompatActivity {
+    TextView textSelectVoice;
 
-    private TextView textSelectVoice;
+    TextView changeBGColor;
+    TextView changeTextColor;
+
+    String BGcolor;
+    String Textcolor;
+    Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        database = new Database(this);
+
         textSelectVoice = findViewById(R.id.sound_TTS_change);
 
 
-        AppCompatButton showPopupButton = findViewById(R.id.colorPicker_button);
-        showPopupButton.setOnClickListener(new View.OnClickListener() {
+        AppCompatButton setBGcolor = findViewById(R.id.colorPicker_button);
+        setBGcolor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(R.layout.activity_popupcolor, null);
+                Intent intent = new Intent(getApplicationContext(),selectcolor.class);
+                startActivity(intent);
 
-                int width = 900; // px 단위로 크기 설정
-                int height = 1200; // px 단위로 크기 설정
-                boolean focusable = true; // 팝업 창 외의 영역 터치 시 닫히도록 설정
+                database.storeString("BGcolor",database.getString("selectcolor",""));
 
-                PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-                popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+                changeBGColor = findViewById(R.id.displayColor);
 
-                AppCompatButton closeButton = popupView.findViewById(R.id.close_button);
-                closeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss(); // 팝업 창 닫기
-                    }
-                });
+                BGcolor = database.getString("BGcolor","");
+
+                int BGcolorInt = Color.parseColor(BGcolor);
+
+                changeBGColor.setBackgroundColor(BGcolorInt);
             }
         });
-    }
 
+        AppCompatButton setTextcolor = findViewById(R.id.colorPicker_button2);
+        setTextcolor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),selectcolor.class);
+                startActivity(intent);
+
+                database.storeString("Textcolor",database.getString("selectcolor",""));
+
+                changeTextColor = findViewById(R.id.Menu_Text_Color);
+
+                Textcolor = database.getString("Textcolor","");
+
+                int TextcolorInt = Color.parseColor(Textcolor);
+
+                changeTextColor.setBackgroundColor(TextcolorInt);
+            }
+        });
+
+
+    }
 
 
 }
