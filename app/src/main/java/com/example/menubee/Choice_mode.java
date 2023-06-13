@@ -17,13 +17,15 @@ public class Choice_mode extends AppCompatActivity {
 
     TextView gotofastorderbtn;
 
+    CharSequence order;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choice_mode);
 
         Intent intent = getIntent();
-        CharSequence order = intent.getCharSequenceExtra("order");
+        order = intent.getCharSequenceExtra("order");
 
         gotoorderbtn = findViewById(R.id.pay_order);
 
@@ -31,7 +33,9 @@ public class Choice_mode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), AdditionalOrder.class);
+                Intent intent = new Intent(getApplicationContext(), PayOrder.class);
+                intent.putExtra("order", (CharSequence) order);
+                startActivity(intent);
             }
         });
 
@@ -64,7 +68,7 @@ public class Choice_mode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), Choice_mode.class);
+                Intent intent = new Intent(getApplicationContext(), TextOrder.class);
                 intent.putExtra("order", (CharSequence) order);
                 startActivity(intent);
             }

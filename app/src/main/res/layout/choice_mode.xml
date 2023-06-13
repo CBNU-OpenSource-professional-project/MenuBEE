@@ -41,7 +41,7 @@
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/bitbit"
                 android:text="빠른 주문"
-                android:layout_marginRight="230dp"
+                android:layout_marginRight="200dp"
                 android:background="#E1E1E1"
                 android:textSize="30dp" />
 
@@ -91,7 +91,7 @@
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/bitbit"
                 android:text="주문 요청"
-                android:layout_marginRight="230dp"
+                android:layout_marginRight="200dp"
                 android:background="#E1E1E1"
                 android:textSize="30dp" />
         </LinearLayout>
@@ -140,7 +140,7 @@
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/bitbit"
                 android:text="추가 요청"
-                android:layout_marginRight="230dp"
+                android:layout_marginRight="200dp"
                 android:background="#E1E1E1"
                 android:textSize="30dp" />
         </LinearLayout>
@@ -172,7 +172,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="160dp"
-                android:background="#ffffff"
                 android:fontFamily="@font/bitbit"
                 android:text="메인 화면으로"
                 android:textColor="#676767" />

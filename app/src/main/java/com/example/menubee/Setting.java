@@ -24,9 +24,20 @@ public class Setting extends AppCompatActivity {
     TextView changeBGColor;
     TextView changeTextColor;
 
+    AppCompatButton setBGcolor;
+    AppCompatButton setTextcolor;
+
+    AppCompatButton settingdonebtn;
+
     String BGcolor;
     String Textcolor;
     Database database;
+
+    boolean BGtoken;
+    boolean Texttoken;
+
+    int TextcolorInt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,56 +46,35 @@ public class Setting extends AppCompatActivity {
 
         database = new Database(this);
 
-        boolean BGtoken = database.getBoolean("BGtoken",false);
-        boolean Texttoken = database.getBoolean("Texttoken",false);
-
-        if (BGtoken && !Texttoken)
-        {
-            String temp = database.getString("colorval","");
-
-            database.storeString("BGcolor",temp);
-
-            changeBGColor = findViewById(R.id.displayColor);
-
-            int TextcolorInt = Color.parseColor(temp);
-
-            changeBGColor.setBackgroundColor(TextcolorInt);
-        }
-        else if(!BGtoken && Texttoken)
-        {
-            String temp = database.getString("colorval","");
-
-            database.storeString("Textcolor",temp);
-
-            changeTextColor = findViewById(R.id.Menu_Text_Color);
-
-            int TextcolorInt = Color.parseColor(temp);
-
-            changeTextColor.setBackgroundColor(TextcolorInt);
-        }
-
         textSelectVoice = findViewById(R.id.sound_TTS_change);
 
 
-        AppCompatButton setBGcolor = findViewById(R.id.colorPicker_button);
+         setBGcolor = findViewById(R.id.colorPicker_button);
         setBGcolor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 database.storeBoolean("BGorText",true);
                 Intent intent = new Intent(getApplicationContext(),selectcolor.class);
                 startActivity(intent);
-                finish();
             }
         });
 
-        AppCompatButton setTextcolor = findViewById(R.id.colorPicker_button2);
+         setTextcolor = findViewById(R.id.colorPicker_button2);
         setTextcolor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 database.storeBoolean("BGorText",false);
                 Intent intent = new Intent(getApplicationContext(),selectcolor.class);
                 startActivity(intent);
-                finish();
+            }
+        });
+
+        settingdonebtn = findViewById(R.id.settingdonebtn);
+        settingdonebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
             }
         });
 

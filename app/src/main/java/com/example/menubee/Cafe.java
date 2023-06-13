@@ -120,24 +120,6 @@ public class Cafe extends AppCompatActivity {
             });
         }
 
-        //database = new Database(this);
-
-        //String BGcolor = database.getString("BGcolor","");
-        //String Textcolor = database.getString("Textcolor","");
-
-        //int BGcolor_int = Color.parseColor(BGcolor);
-        //int Textcolor_int = Color.parseColor(Textcolor);
-
-       // if(BGcolor.equals("")){
-      //      BGcolor_int = Color.parseColor("#FFFFFF");
-       // }
-       // if(Textcolor.equals("")) {
-      //      Textcolor_int = Color.parseColor("#000000");
-      //  }
-        int BGcolor_int = Color.parseColor("#FFFFFF");
-        int Textcolor_int = Color.parseColor("#000000");
-        changeBGColor(BGcolor_int);
-        changeTextColor(Textcolor_int);
 
         orderbtn.setOnClickListener(new View.OnClickListener() {
             @Override

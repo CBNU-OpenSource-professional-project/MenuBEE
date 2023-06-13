@@ -300,11 +300,10 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button"
+                android:id="@+id/settingdonebtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:background="#ffffff"
                 android:fontFamily="@font/bitbit"
                 android:text="완료"
                 android:textColor="#676767" />
