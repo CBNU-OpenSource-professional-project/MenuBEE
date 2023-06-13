@@ -1,5 +1,7 @@
 package com.example.menubee;
 
+import static menubee_backend.CallGPT.resultforGPT;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,12 +25,14 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
 public class Cafe extends AppCompatActivity {
+    ScrollView menuView;
     LinearLayout menu;
     LinearLayout orderResult;
-    AppCompatButton orderbtn;
-
+    AppCompatButton orderbtn, addorderbtn;
     Database database;
+
     class Result {
         LinearLayout selected = new LinearLayout(getApplicationContext());
         TextView menu = new TextView(getApplicationContext());
@@ -43,11 +47,11 @@ public class Cafe extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cafe);
+        menuView = (ScrollView) findViewById(R.id.menuView);
         orderbtn = (AppCompatButton) findViewById(R.id.orderbtn);
 
-
         //result 배열 예시
-        String[] result1 = {"에스프레소", "아메리카노", "카페 라떼", "바닐라라떼", "카페 모카", "캐모마일 차", "휘낭시에", "딸기케이크", "쿠키", "스콘", "파운드케이크"};
+        String[] result1 = resultforGPT;
 
         ArrayList<TextView> menuLists = new ArrayList<TextView>();
         ArrayList<Result> resultList = new ArrayList<Result>();
@@ -56,14 +60,13 @@ public class Cafe extends AppCompatActivity {
 
         orderResult = (LinearLayout) findViewById(R.id.orderResult);
 
-        for (String next : result1) {
+        for(String next : result1) {
             TextView tv = new TextView(getApplicationContext());
             tv.setText(next);
             menuStyle(tv);
             menuLists.add(tv);
             menu.addView(tv);
         }
-
 
         Iterator<TextView> menulistIterator = menuLists.iterator();
         while (menulistIterator.hasNext()) {
@@ -120,6 +123,24 @@ public class Cafe extends AppCompatActivity {
             });
         }
 
+        //database = new Database(this);
+
+        //String BGcolor = database.getString("BGcolor","");
+        //String Textcolor = database.getString("Textcolor","");
+
+        //int BGcolor_int = Color.parseColor(BGcolor);
+        //int Textcolor_int = Color.parseColor(Textcolor);
+
+        // if(BGcolor.equals("")){
+        //      BGcolor_int = Color.parseColor("#FFFFFF");
+        // }
+        // if(Textcolor.equals("")) {
+        //      Textcolor_int = Color.parseColor("#000000");
+        //  }
+//        int BGcolor_int = Color.parseColor("#FFFFFF");
+//        int Textcolor_int = Color.parseColor("#000000");
+//        changeBGColor(BGcolor_int);
+//        changeTextColor(Textcolor_int);
 
         orderbtn.setOnClickListener(new View.OnClickListener() {
             @Override

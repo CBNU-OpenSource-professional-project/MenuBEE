@@ -6,11 +6,15 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import static menubee_backend.CallGPT.resultforGPT;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import menubee_backend.ImageToText;
 
 public class ViewPager2AutoScrollActivity extends AppCompatActivity {
 
@@ -19,12 +23,18 @@ public class ViewPager2AutoScrollActivity extends AppCompatActivity {
     private Timer timer;
     private ProgressBar progressBar;
     private TextView textView;
+    private static String GptResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_pager2_auto_scroll);
 
+        // OCR 객체 생성
+        ImageToText OcrToGpt=new ImageToText(this);
+
+        // OCR 시작
+        OcrToGpt.callCloudVision(Camera_capture.getBitmap());
         viewPager2 = findViewById(R.id.viewPager2);
         textView = findViewById(R.id.text_loading);
         progressBar = findViewById(R.id.progressBar);
@@ -47,7 +57,7 @@ public class ViewPager2AutoScrollActivity extends AppCompatActivity {
                 // ViewPager2에 현재 페이지를 설정합니다.
                 viewPager2.setCurrentItem(currentPage, true);
             }
-        }, 700, 700);
+        }, 3000, 3000);
 
         new Thread(new Runnable() {
             @Override
@@ -94,6 +104,22 @@ public class ViewPager2AutoScrollActivity extends AppCompatActivity {
                                 textView.setText("Loading....");
                             }
                         });
+
+                        // Check if the GPT result is ready
+                        if (resultforGPT != null) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // If the GPT result is ready, hide the progress bar and start the next activity.
+                                    progressBar.setVisibility(View.GONE);
+                                    Intent CafeActivity=new Intent(ViewPager2AutoScrollActivity.this, Cafe.class);
+                                    CafeActivity.putExtra("gptResult", resultforGPT);
+                                    startActivity(CafeActivity);
+                                    finish();
+                                }
+                            });
+                            break;
+                        }
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -108,25 +134,4 @@ public class ViewPager2AutoScrollActivity extends AppCompatActivity {
         // 액티비티가 종료될 때 타이머 취소
         timer.cancel();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // 일정 시간 동안 ProgressBar 뷰를 표시합니다.
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // ProgressBar 뷰를 숨기고 다음 액티비티를 시작합니다.
-                progressBar.setVisibility(View.GONE);
-                startActivity(new Intent(ViewPager2AutoScrollActivity.this, Cafe.class));
-                // 현재 액티비티를 종료합니다.
-                finish();
-            }
-        }, 10000);
-
-        // 텍스트를 "Loading..."으로 설정합니다.
-
-    }
 }
-
